@@ -1,14 +1,12 @@
 import java.io.IOException;
 import java.net.URI;
-
 class HandlerStr implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
     String Str = "";
-
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return String.format("String: %d", Str);  
+            return String.format("String: " + Str);  
         } 
         else {
             System.out.println("Path: " + url.getPath());
@@ -16,7 +14,7 @@ class HandlerStr implements URLHandler {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) { 
                     Str += parameters[1]; 
-                    return String.format("String increased by %s! It's now %d", parameters[1], Str);   
+                    return String.format("String increased by "+parameters[1]+" It's now " + Str);   
                     //return the number added and the total numcer
                 }
             }
@@ -25,17 +23,15 @@ class HandlerStr implements URLHandler {
         }
     }
 }
-
-class NumberServer {
+class StrServer/*NumberServer*/ {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
             //Check that the input can't be empty
             return;
         }
-
         int port = Integer.parseInt(args[0]);  //Get the port from the first input and turns it into integer
-
-        Server.start(port, new Handler());   //It calls Server.start method.
+        //Server.start(port, new Handler());   //It calls Server.start method.
+        Server.start(port, new HandlerStr());
     }
 }

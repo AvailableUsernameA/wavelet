@@ -11,4 +11,4 @@ handleRequest takes url as an argument and will return a String. The method init
 Maybe can create simple search engine which show things based on the path and query of url inputed.
 ***
 **Make the Simplest "Searching Engine"**\
-[Searcjing Engine](SearchEngine.java)
+[Searching Engine](SearchEngine.java)
